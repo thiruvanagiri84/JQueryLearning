@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<head lang="en">
+    <script>
+        var name = "santosh";
+
+        function fnSomething(){
+            var name = "kumar";
+            alert("inside fnSomething: "+name);
+            alert("Global variable name: "+window.name); // We can access global variables by using 'window' keyword
+        }
+
+        function fnClickMe(){
+            fnSomething();
+            alert("inside fnClickMe: "+name); // this returns global variable name 'santosh'
+        }
+    </script>
+</head>
+<br/><br/><br/><br/>
+<center><input type="button" name="test" value="Click Me" onclick="fnClickMe();"></center>
+</body>
+</html>

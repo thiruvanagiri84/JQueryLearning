@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<head lang="en">
+    <script>
+
+        function fnSomething(){
+            hobby = "TT";
+            var hobby;
+            alert("Local Hobby: "+hobby);
+        }
+
+        function fnSomethingElse(){
+            hobby = "Cricket"; // This variable becomes global variable since its not declared using var.
+            // Such variables are implicitly declared as global variables.
+        }
+
+        function fnClickMe(){
+            fnSomething();
+            fnSomethingElse()
+            alert("Global Hobby: "+hobby);
+        }
+    </script>
+</head>
+<br/><br/><br/><br/>
+<center><input type="button" name="test" value="Click Me" onclick="fnClickMe();"></center>
+</body>
+</html>

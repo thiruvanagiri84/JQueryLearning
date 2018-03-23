@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>jQuery Basics</title>
+
+    <link rel="stylesheet" type="text/css" href="jqueryStyles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script src="jquery-3.2.1.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+
+        //Another rest service for testing: https://reqres.in/api/products/3 & https://reqres.in/api/users
+        /*$(document).ready(function() {
+            //(https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en-US)
+            //url: 'http://localhost:8081/topics', -- This is my service, have array of topics
+            $.ajax({
+                url: "http://localhost:8081/topics"
+            }).then(function(data) {
+                console.log("success: "+data[0].id);
+                //alert("success");
+                $('#greeting-id').append(data[0].id);
+                $('#greeting-content').append(data[0].name);
+            });
+        });*/
+
+        //Use Above code - Compact version
+        //Use Below code - Full version of $.ajax() function
+
+        //Sample Json response from "http://localhost:8081/topics" - Array of objects
+        /*[
+            {
+                "id": "Java",
+                "name": "Java Framework",
+                "description": "Java Framework Description"
+            }
+        ]*/
+
+        $(document).ready(function(){
+
+            //1st function inside ready function - ajax call
+            //(https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en-US)
+            //url: 'http://localhost:8081/topics', -- This is my service, have array of topics
+            $.ajax({
+                url: "http://localhost:8081/topics",
+                data: {
+                    format: 'json'
+                },
+                crossDomain: true,
+                success: function(d){
+                    console.log("Hurray Success");
+                    $('#info').html("id: "+d[0].id+"name :"+d[0].name);
+                },
+                error: function(){
+                    $('#info').html('Error occured');
+                },
+                type: 'GET'
+            })
+
+            //2nd function inside ready function - button click GET from rest service
+            $('#btnget').click(function(){
+                $.ajax({
+                    url: "http://localhost:8081/topics",
+                    data: {
+                        format: 'json'
+                    },
+                    crossDomain: true,
+                    success: function(heydata){ //returns array of objects
+                        console.log("Button click Success");
+                        $('#info').html("on button click id: "+heydata[0].id+"name :"+heydata[0].name);
+                        $('#greeting-id').append(heydata[0].id);
+                        $('#greeting-content').append(heydata[0].name);
+                        //Adding to table row
+                        //$('#table1 tr:last').after('<tr><td>'+heydata[0].id+'</td><td>'+heydata[0].name+'</td><td>'+heydata[0].description+'</td></tr>');
+                        for(i=0;i<=heydata.length;i++){
+                            $('#table1 tr:last').after('<tr><td>'+heydata[i].id+'</td><td>'+heydata[i].name+'</td><td>'+heydata[i].description+'</td></tr>');
+                        }
+                    },
+                    error: function(){
+                        $('#info').html('Error!!!')
+                    },
+                    type: 'GET'
+                })
+            });
+
+            //3rd function inside ready function - button click POST to rest service
+            var course = {
+                "id": "new",
+                "name": "newcourse",
+                "description": "new course description"
+            }; //Javascript object - Need to convert into Json using below statement
+            var courseJson = JSON.stringify(course); //converting javascript object into Json
+
+            $('#btnpost').click(function(){
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost:8081/topics",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    crossDomain: true,
+                    data: JSON.stringify(course), //converting javascript object into JSON. User JSON.parse(Json) to convert from json to javascript object
+                    dataType: 'json',
+                    success: function(responseData, status, xhr) {
+                        console.log(responseData);
+                    },
+                    error: function(request, status, error) {
+                        console.log(request.responseText);
+                    }
+                });
+            });
+
+            //4th function inside ready function - button click DELETE to rest service
+            $('#btndelete').click(function(){
+                $.ajax({
+                    type: "DELETE",
+                    url: "http://localhost:8081/topics/new",
+                    headers : {
+                        'Content-Type' : 'application/json'
+                    },
+                    crossDomain : true,
+                    success: function (responseData, status, xhr) {
+                        console.log(responseData);
+                    },
+                    error: function (request, status, error) {
+                        console.log(request.responseText);
+                    }
+                });
+            });
+
+            //5th function inside ready function - button click PUT to rest service(Update)
+            var courseToUpdate = {
+                "id": "java",
+                "name": "java name updated",
+                "description": "java updated description"
+            }; //Javascript object - Need to convert into Json using below statement
+            var courseJson = JSON.stringify(courseToUpdate); //converting javascript object into Json
+            $('#btnput').click(function(){
+                $.ajax({
+                    type: "PUT",
+                    url: "http://localhost:8081/topics/java",
+                    headers : {
+                        'Content-Type' : 'application/json'
+                    },
+                    crossDomain : true,
+                    data: JSON.stringify(courseToUpdate),
+                    success: function (responseData, status, xhr) {
+                        console.log(responseData);
+                    },
+                    error: function (request, status, error) {
+                        console.log(request.responseText);
+                    }
+                });
+            });
+
+            //5th function inside ready function - button click PUT to rest service(Update)
+            $('#btnaddrow').click(function(){
+                $('#table1 tr:last').after('<tr><td>...</td><td>...</td><td>...</td></tr>');
+                $('#table1').append('<tr><td>my data</td><td>more data</td><td>description</td></tr>');
+            });
+
+        });
+
+    </script>
+
+</head>
+<body>
+
+<div class="container">
+
+<pre><h1>Testing REST Services<SMALL> -Santosh</SMALL></h1></pre>
+
+<div class="row">
+    <div class="col-sm-4"><center><button id="btnaddrow" class="btn btn-default">AddTestRow</button></center></div>
+    <div class="col-sm-8">
+        <table id="table1" class="table table-striped table-bordered">
+            <thead>
+            <tr>
+                <th>Course Id</th>
+                <th>Course Name</th>
+                <th>Course Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Something</td>
+                <td>somename</td>
+                <td>somedesc</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<blockquote>
+    <p>Click on methods of REST.
+        Start the Springboot application first before clicking on these methods.
+    </p>
+</blockquote>
+
+<table class="table table-bordered table-striped table-condensed">
+    <tr>
+        <td>GET request to "http://localhost:8081/topics"</td>
+        <td>&nbsp;&nbsp;<button id="btnget" class="btn btn-success">GET</button></td>
+    </tr>
+    <tr>
+        <td>POST request to "http://localhost:8081/topics"</td>
+        <td>&nbsp;&nbsp;<button id="btnpost" class="btn btn-primary">POST</button></td>
+    </tr>
+    <tr>
+        <td>DELETE request to "http://localhost:8081/topics/new"</td>
+        <td>&nbsp;&nbsp;<button id="btndelete" class="btn btn-danger">DELETE</button></td>
+    </tr>
+    <tr>
+        <td>PUT request to "http://localhost:8081/topics/java"</td>
+        <td>&nbsp;&nbsp;<button id="btnput" class="btn btn-info">PUT</button></td>
+    </tr>
+</table>
+
+<!--<input id="button1" class="clsbutton1" type="button" name="test1" value="Click 1" >-->
+</div>
+<hr>
+
+<div>
+    <label for="courseid" id="greeting-id">Course ID is: </label> <br/>
+    <label for="courseid" id="greeting-content">Course Name is: </label>
+</div>
+
+Info DIV: <br/>
+<div id="info"></div>
+<br/>
+
+
+</body>
+</html>
+

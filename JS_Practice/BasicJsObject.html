@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head lang="en">
+    <script>
+
+        var globalObj = {};
+        globalObj.name = "kumar";
+        globalObj.age = 30;
+        globalObj.company = "TR";
+
+        function fnClickMe(){
+            var obj = {};
+            obj.name = "san";
+            obj.age = 30;
+            obj.company = "TR";
+            alert("here");
+
+            alert(obj.name);
+            alert(window.globalObj.name);
+        }
+    </script>
+</head>
+<br/><br/><br/><br/>
+<center><input type="button" name="test" value="Click Me" onclick="fnClickMe();"></center>
+</body>
+</html>

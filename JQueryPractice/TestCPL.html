@@ -1,0 +1,1073 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+        "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+      xml:lang="en" >
+<head>
+    <title>Checkpoint Learning</title>
+    <link type="text/css" rel="stylesheet" href="/styles/style.css" media="screen"/>
+    <link type="text/css" rel="stylesheet" href="/styles/styleprint.css" media="print" />
+    <link type="text/css" rel="stylesheet" href="/styles/cssverticalmenu.css" media="screen" />
+    <script type="text/javascript" src="/scripts/cssverticalmenu.js"></script>
+
+    <link rel="stylesheet" href="/Mktg/slider/nivo-slider.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/Mktg/slider/themes/light/light.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script type="text/javascript" src="/scripts/jquery-1.9.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/Mktg/slider/jquery.nivo.slider.js"></script>
+    <script type="text/javascript" src="/scripts/AC_RunActiveContent.js" ></script>
+    <script type="text/javascript" src="/scripts/control.js"></script>
+    <script type="text/javascript" src="/scripts/ipad.js"></script>
+    <script type="text/javascript" src="/scripts/calendar.js"></script>
+    <meta http-equiv="cache-control" content="max-age=0, must-revalidate, no-cache, no-store, private">
+    <meta http-equiv="expires" content="-1">
+    <meta http-equiv="pragma" content="no-cache">
+    <!--[if IE]>
+    <style type="text/css">
+        img {behavior: url("/pngbehavior.htc"); vertical-align: middle; border: none;}
+        input.image {behavior: url("/pngbehavior.htc");}
+    </style>
+    <![endif]-->
+    <style type="text/css">
+        table#regtable td:first-child {text-align: left; white-space: nowrap; width: 10%;}
+        table#regtable td:first-child + td {text-align: left; width: 40%;}
+        table#regtable td:first-child + td + td {text-align: left; width: 25%;}
+        table#regtable td:first-child + td + td + td {text-align: left; width: 25%;}
+        table#regtable td:first-child + td + td + td + td {text-align: center;}
+
+        table#teachtable td:first-child {text-align: left; white-space: nowrap; width: 10%;}
+        table#teachtable td:first-child + td {text-align: left; width: 40%;}
+        table#teachtable td:first-child + td + td {text-align: left; width: 25%;}
+        table#teachtable td:first-child + td + td + td {text-align: left; width: 25%;}
+
+        table#waittable td:first-child {text-align: left; white-space: nowrap; width: 10%;}
+        table#waittable td:first-child + td {text-align: left; width: 40%;}
+        table#waittable td:first-child + td + td {text-align: left; width: 25%;}
+        table#waittable td:first-child + td + td + td {text-align: left; width: 25%;}
+
+        table#plantable td:first-child {width:40%;}
+        table#plantable td:first-child + td {width:16%;}
+        table#plantable td:first-child + td + td {width:10%; text-align:center;}
+        table#plantable td:first-child + td + td + td {width:10%; text-align:center;}
+        table#plantable td:first-child + td + td + td + td {width:10%;}
+        table#plantable td:first-child + td + td + td + td + td {width:24%;}
+
+        table#progtable td:first-child {width:56%;}
+        table#progtable td:first-child + td {width:15%;}
+        table#progtable td:first-child + td + td {width:19%;}
+        table#progtable td:first-child + td + td + td {width:10%; text-align: center;}
+        table#progtable td:first-child + td + td + td + td {text-align: center;}
+    </style>
+</head>
+
+<script language = "javascript">
+
+
+    function supressedCourseChk(t,v){
+
+
+        // t is the course title and v is the value from which section the request  i.e from Launch Icon/Add shopping cart
+
+        if(v=='shoppingcart'){
+
+            alert('The course"'+ t +'" cannot be \n purchased because it is no longer available. Please contact \n Customer Support at 1-800-431-9025.');
+
+            return false;
+
+        }else{
+
+            alert('The course"'+ t +'" cannot be \n Launched because it is no longer available. Please contact \n Customer Support at 1-800-431-9025.');
+            return false;
+
+        }
+
+    }
+
+
+
+    function fnExtranet(obj)
+    {
+        var ExtOption = obj.options[obj.selectedIndex].value;
+        var url=  "/professional/Controller?com.reqwired.site.action=Homepage&ExtOpt="+ExtOption+"&load=1";
+
+        makeXMLHTTPRequest(url);
+    }
+
+    function makeXMLHTTPRequest(reqURL)
+    {
+        if (window.XMLHttpRequest){
+            //IE7 + and other browsers
+            xmlhttp = new XMLHttpRequest();
+        }else{
+            //IE 6, 5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        if(xmlhttp == null){
+            alert(" Your browser does not support AJAX");
+            return;
+        }
+        //Function to process response form upload.jsp
+        document.getElementById("ajaxDiv").innerHTML="<center><img src='/images/ajax_loader.gif' alt='Loading...' title='Loading'  /></center>";
+        xmlhttp.onreadystatechange = function(){
+            if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+
+                document.getElementById("ajaxDiv").innerHTML=xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("POST", reqURL, true);
+        xmlhttp.send(null);
+    }
+</script>
+
+<body>
+
+<table id="main" cellspacing="0">
+    <tr>
+
+        <td id="right">
+            <div class="pagetitle">
+
+                <table width="100%" border="0" cellspacing="0" cellpadding="0"
+                       class="pagetitle">
+                    <tr>
+                        <td width="78%" align="left" valign="top" class="title">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td align="left" valign="top"><img
+                                            src="/images/icons/32x32/home.png"
+                                            style="width: 32px; height: 32px" title="Home Icon" /> <span
+                                            class="pagetitletext">Homeroom</span></td>
+                                </tr>
+                                <tr>
+                                    <td align="left" valign="top">
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td width="22%" align="left" valign="top">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td align="left" valign="top">
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+
+            <div class="section">
+                <div class="sectiontitle">
+                    <img src="/images/icons/16x16/news.png" style="width: 16px; height: 16px" title="News"/>
+                    Message from White and Black
+                </div>
+                <p>
+                <p>Welcome to Checkpoint Learning! Follow us on <a href="http://twitter.com/CheckpointLearn">Twitter</a>!</p>   <object id="__symantecPKIClientMessenger" style="DISPLAY: none" data-install-updates-user-configuration="true" data-extension-version="0.4.0.129"></object>  <object id="__symantecPKIClientMessenger" style="DISPLAY: none" data-install-updates-user-configuration="true" data-extension-version="0.4.0.129"></object>  <object id="__symantecPKIClientMessenger" style="DISPLAY: none" data-extension-version="0.4.0.129" data-install-updates-user-configuration="true"></object>
+                </p>
+            </div>
+            <div class="section">
+                <div class="sectiontitle">
+                    <a class="sectiontitlelink" href='/professional/Controller?com.reqwired.site.action=CourseInstanceRegistrations'>
+                        <img src="/images/icons/16x16/scroll.png" style="width: 16px; height: 16px" title="Registrations"/>My Registrations</a>
+                </div>
+                <p>Checkpoint Learning does not have a record of you being registered for any upcoming Course Activities.</p>
+            </div>
+            <div class="section">
+                <div class="sectiontitle">
+                    <a class="sectiontitlelink" href='/professional/Controller?com.reqwired.site.action=LearningPlanView&learngplan_id=816819&org_id=135301'><img src="/images/icons/16x16/branch.png" style="width: 16px; height: 16px" title="Learning Plan"/>
+                        Learning Plan (Brianna Anderson)</a>
+                </div>
+
+                <table class="table table-bordered table-striped" id="plantable" cellspacing="0">
+                    <colgroup>
+                        <col style="width:40%;"/>
+                        <col style="width:16%;"/>
+                        <col style="width:10%; text-align:center;"/>
+                        <col style="width:10%; text-align:center;"/>
+                        <col style="width:10%;"/>
+                        <col style="width:24%;"/>
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <td>Title</td>
+                        <td>Sponsor</td>
+                        <td>Importance</td>
+                        <td>Target Date</td>
+                        <td>Status</td>
+                        <td>Comment</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td colspan="6">
+                            No items have been added to this learning plan.
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="section">
+                <div class="sectiontitle">
+                    <div class="sectiontitleright">
+                        Last Confirmed:
+                        09/19/2017
+                        by Varsha Test
+                    </div>
+                    <a class="sectiontitlelink" href='/professional/Controller?com.reqwired.site.action=LearningPlanView&learngplan_id=501466&org_id=1001'><img src="/images/icons/16x16/branch.png" style="width: 16px; height: 16px" title="Learning Plan"/>
+                        Learning Plan (White &amp; Black, LLP)</a>
+                    &nbsp;&nbsp;<a class="sectiontitlesublink" href='/professional/Controller?com.reqwired.site.action=LearningPlanEdit&learngplan_id=501466&org_id=1001'><img src="/images/icons/16x16/pencil.png" style="width: 16px; height: 16px" title="Edit"/></a>
+                </div>
+
+                <div class="instructionTextForSections" style="padding-bottom: 5px;">To see a complete list of the courses included in your Learning Plan, select either the title or the More... link.</div>
+
+                <table class="table table-bordered table-striped" id="plantable" cellspacing="0">
+                    <colgroup>
+                        <col style="width:40%;"/>
+                        <col style="width:16%;"/>
+                        <col style="width:10%; text-align:center;"/>
+                        <col style="width:10%; text-align:center;"/>
+                        <col style="width:10%;"/>
+                        <col style="width:24%;"/>
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <td>Title</td>
+                        <td>Sponsor</td>
+                        <td>Importance</td>
+                        <td>Target Date</td>
+                        <td>Status</td>
+                        <td>Comment</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="roweven">
+                        <td><a href="/professional/Controller?com.reqwired.site.action=CourseEntryView&course_id=127130">2016 Specialized Tax Update</a></td>
+                        <td>Checkpoint Learning (Self Study)</td>
+                        <td>Option</td>
+                        <td>
+                    <span class="" style="font-weight: normal;">
+                      12/31/2018
+                    </span>
+                        </td>
+                        <td>
+                            <span class="LPStatus_1">No Action</span>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr class="rowodd">
+                        <td><a href="/professional/Controller?com.reqwired.site.action=CourseEntryView&course_id=122415">49 Tax-Cutting Moves for Small Businesses and Their Owners</a></td>
+                        <td>Checkpoint Learning (Self Study)</td>
+                        <td>Mandatory</td>
+                        <td>
+                    <span class="" style="font-weight: normal;">
+                      12/31/2018
+                    </span>
+                        </td>
+                        <td>
+                            <span class="LPStatus_1">No Action</span>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr class="roweven">
+                        <td><a href="/professional/Controller?com.reqwired.site.action=CourseEntryView&course_id=110705">American Taxpayer Relief Act: What You Need to Know</a></td>
+                        <td>MicroMash</td>
+                        <td>Mandatory</td>
+                        <td>
+                    <span class="" style="font-weight: normal;">
+                      12/31/2018
+                    </span>
+                        </td>
+                        <td>
+                            <span class="LPStatus_1">No Action</span>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">
+                            <a href='/professional/Controller?com.reqwired.site.action=LearningPlanView&learngplan_id=501466&org_id=1001'><span class="more">More ...</span></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Section belongs to the In Progress section -->
+
+
+
+
+            <script language="javascript">
+                var newWin = null;
+                function openWin() {
+                    newWin = window.open('/professional/Controller?com.reqwired.site.action=CourseHideorUnhide&chval=showhidden&redir=Homepage','CheckpointLearning','scrollbars=yes,menubar=no,height=600,width=800,top=200,left=200,resizable=no,toolbar=no,location=no,status=no');
+                    newWin.focus();
+                }
+                function load(url,isOneSource) {
+                    if (isOneSource == true) {
+                        var newWind = window.open(url,'CheckpointLearning','scrollbars=yes,menubar=no,height=600,width=800,top=200,left=200,resizable=no,toolbar=yes,location=yes,status=no');
+
+                    } else {
+                        window.location=url
+                    }
+                }
+
+                function closeWin(refresh)
+                {
+                    if(newWin!=null && !newWin.closed)
+                    {
+                        window.opener.close();
+
+                    }
+                    if(refresh)
+                        location.reload(true);
+                }
+
+                function hide(url) {
+
+                    var hide = window.open(url,'CheckpointLearning','scrollbars=yes,menubar=yes,height=600,width=800,resizable=yes,toolbar=yes,location=yes,status=yes');
+
+                }
+                function unhideAllCourses() {
+                    if(document.forms[0].unhideAll.checked==true)
+                    {
+                        for (var a=0; a < document.forms[0].lang.length; a++)        {
+                            document.forms[0].lang[a].checked = true;
+                        }
+                    }
+                    else
+                    {
+                        for (var a=0; a < document.forms[0].lang.length; a++)        {
+                            document.forms[0].lang[a].checked = false;
+                        }
+                    }
+                }
+            </script>
+
+
+
+
+
+            <script type="text/javascript" src="/scripts/cssverticalmenu.js"></script>
+            <script type="text/javascript" src="/scripts/AC_RunActiveContent.js"></script>
+            <script type="text/javascript" src="/scripts/control.js"></script>
+            <script type="text/javascript" src="/scripts/ipad.js"></script>
+            <link type="text/css" rel="stylesheet" href="/styles/style.css" media="screen"/>
+            <link type="text/css" rel="stylesheet" href="/styles/styleprint.css" media="print" />
+            <link type="text/css" rel="stylesheet" href="/styles/cssverticalmenu.css" media="screen" />
+            <meta http-equiv="cache-control" content="max-age=0, must-revalidate, no-cache, no-store, private">
+            <meta http-equiv="expires" content="-1">
+            <meta http-equiv="pragma" content="no-cache">
+            <!--[if IE]>
+            <style type="text/css">
+                img {behavior: url("/pngbehavior.htc"); vertical-align: middle; border: none;}
+                input.image {behavior: url("/pngbehavior.htc");}
+            </style>
+            <![endif]-->
+
+
+            <div class="section">
+                <div class="sectiontitle"><a class="sectiontitlelink"
+                                             href="javascript:load('/professional/Controller?com.reqwired.site.action=ActivitiesPending',false)">
+                    <img src="/images/icons/16x16/movie_pause.png"
+                         style="width: 16px; height: 16px" title="In Progress" /> In Progress</a></div>
+                <table class="table table-bordered table-striped" id="progtable" cellspacing="0">
+                    <colgroup>
+                        <col style="width: 51%;" />
+                        <col style="width: 15%;" />
+                        <col style="width: 10%; text-align: center;" />
+                        <col style="width: 19%;" />
+                        <col style="width: 10%; text-align: center;" />
+                        <col style="width: 10%; text-align: center;" />
+                        <col style="width: 15%; text-align: center;" />
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <td>Title</td>
+                        <td>Sponsor</td>
+                        <td nowrap="true">Expiration Date</td>
+                        <td>Format</td>
+                        <td>NASBA Field of Study/Credits</td>
+                        <td>% Complete</td>
+                        <td colspan="2">Launch</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+
+
+
+                    <tr class="roweven">
+                        <td>
+
+                            <a href="javascript:load('/professional/Controller?com.reqwired.site.action=CourseInstanceView&courseinstance_id=601578',false)">
+                                101 Financial Solutions: Diagnosis and Remedy </a>
+
+                        </td>
+
+
+                        <td>Checkpoint Learning (Self Study)</td>
+
+                        <td>
+
+                            <div class="eventdetails"><a class="calendar"
+                                                         title="This date is based on your subscription renewal. Upon renewal this date will be updated to 365 days from your initial course launch.">
+
+                                02/04/2018
+                            </a></div>
+
+
+
+                        </td>
+
+                        <td><img src="/images/icons/16x16/workstation_network.png"
+                                 title="Online (Self-Study)" />
+
+                            Online (Self-Study)
+                        </td>
+
+                        <td class="categories">
+                            General: 8.0 <br />
+
+                        </td>
+                        <td>0</td>
+
+
+
+
+
+                        <td >
+
+
+
+
+                            <a class="btn btn-primary" href="javascript:load('/professional/Controller?com.reqwired.site.action=LearningActivityLaunch&activity_id=16994841',false)">
+
+                                Launch
+                            </a>
+
+
+
+                        </td>
+                        <td>
+                            <form  id="16994841" method="post" action='/professional/Controller'>
+                                <input type="hidden" name="com.reqwired.site.action" value="CourseHideorUnhide"/>
+                                <input type="hidden" name="hideCParam" value="hide"/>
+                                <input type="hidden" name="activity_id" value="16994841"/>
+                                <a onclick="document.getElementById('16994841').submit();" href="javascript:void(0);">Hide</a>
+                            </form>
+                        </td>
+
+
+
+
+
+                    </tr>
+
+                    <tr>
+                        <td colspan="4">
+
+                            <a href="javascript:void(0);" onclick="javascript:openWin();"><span class="more">Show Hidden Courses</span></a>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+
+            <!-- Section belongs to the On Demand Learning section -->
+            <?xml version="1.0" encoding="UTF-8"?>
+
+
+
+
+
+            <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+            "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+            <html xmlns="http://www.w3.org/1999/xhtml"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+                  xml:lang="en" >
+
+
+
+
+
+            <!-- On Demand Courses of FIRM University -->
+
+            <?xml version="1.0" encoding="UTF-8"?>
+
+
+
+
+
+            <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+            "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+            <html xmlns="http://www.w3.org/1999/xhtml"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+                  xml:lang="en" >
+
+            <!-- On Demand Course Instances Section -->
+            <div class="section">
+                <div class="sectiontitle">
+                    <table id="a1" width="100%" cellspacing="0">
+                        <tr>
+                            <td>
+                                <a class="sectiontitlelink" href='/professional/Controller?com.reqwired.site.action=OnDemandCourseInstancesList&com.reqwired.web.prof.cih.ondemand=true&university_type=firm'><img src="/images/icons/16x16/folder_movie.png"
+                                                                                                                                                                                                                   style="width: 16px; height: 16px" title="On-Demand "/> White &amp; Black, LLP University
+                                    On Demand Learning (Courses Available)</a>
+                            </td>
+
+                        </tr>
+                    </table>
+                </div>
+
+                <table class="table table-bordered table-striped" cellspacing="0">
+                    <colgroup>
+                        <col style="width: 50%;" />
+                        <col style="width: 15%;" />
+                        <col style="width: 15%;" />
+                        <col style="width: 10%; text-align: center;" />
+                    </colgroup>
+                    <thead>
+
+
+
+                    <td>Title</td>
+                    <td>Sponsor</td>
+                    <td>Format</td>
+
+                    <td>NASBA Field of Study/Credits</td>
+                    <td>Get My Course</td>
+                    </tr>
+
+                    </thead>
+                    <tbody>
+                    <tr class="roweven">
+
+                        <td>
+
+                            <a href="/professional/Controller?com.reqwired.site.action=OnDemandCourseInstanceView&amp;id=636202&amp;purchased_date=&amp;is_cpl_bundle=null&amp;is_account_level=null&amp;is_consumable=null&amp;university_type=firm&amp;order_id=0&amp;cisOrderNo=null&amp;college_id=2128">
+
+
+
+                                001_Aparna_Test_CourseAct_Support_Support Case 914319:
+
+                            </a>
+                        </td>
+                        <td>
+
+                            AICPA SPONSOR COLLEGE
+
+                        </td>
+                        <td>
+
+                            <img src="/images/icons/16x16/workstation_network.png" 	style="width: 16px; height: 16px" title="CE-Format Icon" />
+
+
+                            Online (Self-Study)
+
+                        </td>
+                        <td class="categories">
+                        </td>
+
+                        <td>
+
+                            <img src="/images/icons/16x16/media_play.png"
+                                 style="width: 16px; height: 16px" title="Launch Icon" />
+
+
+
+
+                            <a href="/professional/Controller?com.reqwired.site.action=OnDemandCourseInstanceView&amp;id=636202&amp;purchased_date=&amp;is_cpl_bundle=null&amp;is_account_level=null&amp;is_consumable=null&amp;university_type=firm&amp;order_id=0&amp;cisOrderNo=null&amp;college_id=2128&amp;ONDEMAND=true"> Launch</a>
+
+
+
+                        </td>
+                    </tr>
+
+                    <tr class="rowodd">
+
+                        <td>
+
+                            <a href="/professional/Controller?com.reqwired.site.action=OnDemandCourseInstanceView&amp;id=601388&amp;purchased_date=&amp;is_cpl_bundle=null&amp;is_account_level=null&amp;is_consumable=null&amp;university_type=firm&amp;order_id=0&amp;cisOrderNo=null&amp;college_id=2128">
+
+
+
+                                002_Reverse_directDeposit_apps
+
+                            </a>
+                        </td>
+                        <td>
+
+                            AICPA SPONSOR COLLEGE
+
+                        </td>
+                        <td>
+
+                            <img src="/images/icons/16x16/workstation_network.png" 	style="width: 16px; height: 16px" title="CE-Format Icon" />
+
+
+                            Online (Self-Study)
+
+                        </td>
+                        <td class="categories">
+                        </td>
+
+                        <td>
+
+
+
+
+
+
+                            <a class="btn btn-primary" href="/professional/Controller?com.reqwired.site.action=OnDemandCourseInstanceView&amp;id=601388&amp;purchased_date=&amp;is_cpl_bundle=null&amp;is_account_level=null&amp;is_consumable=null&amp;university_type=firm&amp;order_id=0&amp;cisOrderNo=null&amp;college_id=2128&amp;ONDEMAND=true"> Launch</a>
+
+
+
+                        </td>
+                    </tr>
+
+                    <tr class="roweven">
+
+                        <td>
+
+                            <a href="/professional/Controller?com.reqwired.site.action=OnDemandCourseInstanceView&amp;id=621041&amp;purchased_date=&amp;is_cpl_bundle=null&amp;is_account_level=null&amp;is_consumable=null&amp;university_type=firm&amp;order_id=0&amp;cisOrderNo=null&amp;college_id=4222">
+
+
+
+                                01_course_act
+
+                            </a>
+                        </td>
+                        <td>
+
+                            Great CPEs
+
+                        </td>
+                        <td>
+
+                            <img src="/images/icons/16x16/workstation_network.png" 	style="width: 16px; height: 16px" title="CE-Format Icon" />
+
+
+                            Online (Self-Study)
+
+                        </td>
+                        <td class="categories">
+                        </td>
+
+                        <td>
+
+                            <img src="/images/icons/16x16/media_play.png"
+                                 style="width: 16px; height: 16px" title="Launch Icon" />
+
+
+
+
+                            <a href="/professional/Controller?com.reqwired.site.action=OnDemandCourseInstanceView&amp;id=621041&amp;purchased_date=&amp;is_cpl_bundle=null&amp;is_account_level=null&amp;is_consumable=null&amp;university_type=firm&amp;order_id=0&amp;cisOrderNo=null&amp;college_id=4222&amp;ONDEMAND=true"> Launch</a>
+
+
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="4">
+
+                            <a href="/professional/Controller?com.reqwired.site.action=OnDemandCourseInstancesList&amp;com.reqwired.web.prof.cih.ondemand=true&amp;university_type=firm"><span class="more">Click here for the complete list of courses you own...</span></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <!-- On Demand Course Instances Section -->
+            </html>
+
+
+
+
+            <!-- On Demand Courses of FIRM University -->
+            <div id="ajaxDiv">
+
+                <?xml version="1.0" encoding="UTF-8"?>
+
+
+                <script type="text/javascript" src="/scripts/control.js"></script>
+
+
+
+                <script language = "javascript">
+                    function fnExtDelete(id,title,ExtOpt){
+
+
+
+                        if(confirm("You are about to cancel the request for the course: "+"'" + title + "'"+".Click OK to confirm.")){
+                            //get the form element
+                            var form = document.getElementById("ExtCancel");
+                            //create a hidden input element and append it to the form
+                            var idElem = document.createElement("INPUT");
+                            idElem.type = 'hidden';
+                            idElem.name = 'id';
+                            idElem.value = id;
+                            form.appendChild(idElem);
+                            var cancelElem = document.createElement("INPUT");
+                            cancelElem.type = 'hidden';
+                            cancelElem.name = 'title';
+                            cancelElem.value = title;
+                            form.appendChild(cancelElem);
+                            var ExtOptionElem = document.createElement("INPUT");
+                            ExtOptionElem.type = 'hidden';
+                            ExtOptionElem.name = 'ExtOpt';
+                            ExtOptionElem.value = ExtOpt;
+                            form.appendChild(ExtOptionElem);
+                            form.submit();
+                        }
+                    }
+
+                    function showMePopupwindow(url, title, w, h) {
+                        var left = (screen.width / 2) - (w / 2);
+                        var top = (screen.height / 2) - (h / 2);
+                        window.open(url, "ShowMe", 'toolbar=no, location=no,directories=no, status=no, menubar=no, scrollbars=no, resizable=no,copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+                    }
+                </script>
+
+                <script type="text/javascript">
+                    function showMeClick() {
+                        showMePopupwindow("http://support.checkpoint.thomsonreuters.com/assets/checkpointlearning/showme/index.html?showme=02", "Show Me", 800, 600);
+                    }
+                </script>
+
+
+
+
+                <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+                "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+                <html xmlns="http://www.w3.org/1999/xhtml"
+                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                      xsi:schemaLocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd"
+                      xml:lang="en" >
+
+                <div class="section">
+                    <div class="sectiontitleOrange">
+
+
+
+
+                        <table id="a1" width="100%" cellspacing="0">
+                            <tr>
+                                <td>
+                                    <a class="sectiontitlelink" href="/professional/Controller?com.reqwired.site.action=OnDemandCourseInstancesList&amp;com.reqwired.web.prof.cih.ondemand=true&amp;university_type=thomson"><img src="/images/icons/16x16/folder_movie.png"
+                                                                                                                                                                                                                                  style="width: 16px; height: 16px" title="On-Demand" title="On-Demand"/>
+                                        Thomson Reuters University On Demand Learning </a>
+
+
+                                    (Courses Available)
+
+                                    <a href="#" class="help" onclick="javascript:showMeClick()"><img src="/images/icons/16x16/help2.png" style="width: 16px; height: 16px"
+                                                                                                     title = " Learn more about navigation within the course outline for PASS Online or MicroMash online courses."/></a>
+                                </td>
+
+
+
+                                </td>
+
+
+                            </tr>
+                        </table>
+                    </div>
+
+                    <table class="table table-bordered table-striped" cellspacing="0">
+                        <colgroup>
+
+                            <col style="width: 40%;" />
+                            <col style="width: 10%;" />
+                            <col style="width: 10%;" />
+                            <col style="width: 30%; text-align: center;" />
+                            <col style="width: 10%;" />
+
+                        </colgroup>
+                        <thead>
+                        <tr>
+
+                            <td>Title</td>
+                            <td>Sponsor</td>
+
+                            <td nowrap="true">Expiration Date</td>
+                            <td nowrap="true">NASBA Field of Study/Credits</td>
+
+
+                            <td>Get My Course</td>
+
+
+
+
+
+
+
+
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr class="roweven">
+
+
+                            <td>
+
+                                <a href="/professional/Controller?com.reqwired.site.action=CourseEntryView&amp;course_id=100366&amp;source=null"> 101 Financial Solutions - Diagnosis and Remedy</a>
+                            </td>
+
+
+
+
+
+                            <td>Checkpoint Learning (Self Study)</td>
+
+
+
+                            <td>
+                                <div class="eventdetails">
+
+                                    <a class="calendar" title="This date is based on your order end date.">
+                                        02/04/2018
+
+                                    </a>
+                                </div>
+                            </td>
+                            <td nowrap="true">           Accounting: 8.0 <br />
+
+
+                            </td>
+
+                            <td>
+
+
+
+
+                                <a href="/professional/Controller?com.reqwired.site.action=OnDemandCourseInstanceView&amp;id=632801&amp;purchased_date=06/02/2010&amp;is_cpl_bundle=C&amp;is_account_level=N&amp;is_consumable=Y&amp;university_type=thomson&amp;order_id=1081700&amp;cisOrderNo=00241347403&amp;college_id=4146&amp;ONDEMAND=true" style="text-decoration: none;">
+                                    <img alt="Launch the Course Online" title="Launch the Course Online" src="/images/icons/16x16/workstation_network.png"
+                                         style="width: 16px; height: 16px"/>
+                                </a>
+
+
+
+                            </td>
+
+
+
+
+                        </tr>
+
+                        <tr class="rowodd">
+
+
+                            <td>
+
+                                <a href="/professional/Controller?com.reqwired.site.action=CourseEntryView&amp;course_id=100367&amp;source=null"> A Complete Guide to Investing</a>
+                            </td>
+
+
+
+
+
+                            <td>Checkpoint Learning (Self Study)</td>
+
+
+
+                            <td>
+                                <div class="eventdetails">
+
+                                    <a class="calendar" title="This date is based on your order end date.">
+                                        02/04/2018
+
+                                    </a>
+                                </div>
+                            </td>
+                            <td nowrap="true">           Specialized Knowledge: 15.0 <br />
+
+
+                            </td>
+
+                            <td>
+
+
+
+
+                                <a href="/professional/Controller?com.reqwired.site.action=OnDemandCourseInstanceView&amp;id=632928&amp;purchased_date=06/02/2010&amp;is_cpl_bundle=C&amp;is_account_level=N&amp;is_consumable=Y&amp;university_type=thomson&amp;order_id=1081700&amp;cisOrderNo=00241347403&amp;college_id=4146&amp;ONDEMAND=true" style="text-decoration: none;">
+                                    <img alt="Launch the Course Online" title="Launch the Course Online" src="/images/icons/16x16/workstation_network.png"
+                                         style="width: 16px; height: 16px"/>
+                                </a>
+
+
+
+                            </td>
+
+
+
+
+                        </tr>
+
+                        <tr class="roweven">
+
+
+                            <td>
+
+                                <a href="/professional/Controller?com.reqwired.site.action=CourseEntryView&amp;course_id=100293&amp;source=null"> Accounting for Liabilities</a>
+                            </td>
+
+
+
+
+
+                            <td>Checkpoint Learning (Self Study)</td>
+
+
+
+                            <td>
+                                <div class="eventdetails">
+
+                                    <a class="calendar" title="This date is based on your order end date.">
+                                        02/04/2018
+
+                                    </a>
+                                </div>
+                            </td>
+                            <td nowrap="true">           Accounting: 9.0 <br />
+
+
+                            </td>
+
+                            <td>
+
+
+
+
+                                <a href="/professional/Controller?com.reqwired.site.action=OnDemandCourseInstanceView&amp;id=608666&amp;purchased_date=06/02/2010&amp;is_cpl_bundle=C&amp;is_account_level=N&amp;is_consumable=Y&amp;university_type=thomson&amp;order_id=1081700&amp;cisOrderNo=00241347403&amp;college_id=4146&amp;ONDEMAND=true" style="text-decoration: none;">
+                                    <img alt="Launch the Course Online" title="Launch the Course Online" src="/images/icons/16x16/workstation_network.png"
+                                         style="width: 16px; height: 16px"/>
+                                </a>
+
+
+
+                            </td>
+
+
+
+
+                        </tr>
+
+                        <tr class="rowodd">
+
+                            <td colspan="4">
+                                <a href='/professional/Controller?com.reqwired.site.action=OnDemandCourseInstancesList&com.reqwired.web.prof.cih.ondemand=true&university_type=thomson'><span class="more">
+					                     		Click here for the complete list of courses you own...</span></a>
+                            </td>
+
+
+
+                        </tbody>
+                    </table>
+
+
+
+
+                </div>
+                </html>
+
+
+
+            </div>
+
+            </html>
+
+            <!-- Section belongs to the Preview course activities -->
+            <!-- This sections is displayed to the professional only if the
+                professional has Course Finder enabled. -->
+
+            <div class="section">
+                <div class="sectiontitle">
+                    <a class="sectiontitlelink" href="/professional/Controller?com.reqwired.site.action=CoursePreview"><img src="/images/icons/16x16/folder_movie.png" style="width: 16px; height: 16px" title="Previewed Course Activities"/> Previewed Courses</a>
+                </div>
+
+                <table class="table table-bordered table-striped" id="prevtable" cellspacing="0">
+                    <colgroup>
+                        <col style="text-align: left; white-space: nowrap; width: 30%;"/>
+                        <col style="text-align: left; width: 20%;"/>
+                        <col style="text-align: left; width: 20%;"/>
+                        <col style="text-align: center; width: 10%;"/>
+                        <col style="text-align: center; width: 10%;"/>
+                        <col style="text-align: center; width: 10%;"/>
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <td>Title</td>
+                        <td>Sponsor</td>
+                        <td>NASBA Field of Study/Credits</td>
+                        <td>% Complete</td>
+                        <td>Launch</td>
+                        <td>Action</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr>
+                        <td colspan="5">Checkpoint Learning does not have records of courses previewed by you.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+
+        </td>
+    </tr>
+</table>
+<html lang="en">
+<head>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-72945099-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+<body>
+
+<div id="footer">
+    &copy; 2017 Thomson Reuters/Tax & Accounting. All Rights Reserved.
+
+
+    <!-- <img src="/images/logo_tr.gif" alt="THOMSON REUTERS" /> -->
+</div>
+
+</body>
+</html>
+</body>
+</html>
+

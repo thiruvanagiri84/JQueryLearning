@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<head lang="en">
+    <script>
+        function fnClickMe(){
+            var name = "santosh";
+            alert(name);
+            var i = 1;
+            if(i==1){
+                var name = "kumar";
+                alert(name);
+            }
+            alert(name); // both alerts print kumar only. JS has function level scope, and not block level scope
+        }
+    </script>
+</head>
+<br/><br/><br/><br/>
+<center><input type="button" name="test" value="Click Me" onclick="fnClickMe();"></center>
+</body>
+</html>

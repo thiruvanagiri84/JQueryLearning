@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>JQuery Radio buttons & CheckBoxes</title>
+
+    <link rel="stylesheet" type="text/css" href="jqueryStyles.css">
+
+    <script type="text/javascript" src="jquery-3.2.1.js"></script>
+
+    <!-- We can use CDN(Content data network) as well instead of using above local js file.
+    <script src="https://code.jquery.com/jquery-3.2.1.js"
+            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous">
+    </script>
+    -->
+    <!--
+        Id Selector: use #
+        Class Selector: Use .
+        Element Selector: Use element directly, Ex: div
+    -->
+
+    <script type="text/javascript">
+        jQuery(document).ready(function(){
+            $('#button1').click(function(){
+                //$('input').css('background-color','red');
+                var checkedGenderCollection = $('input[type="radio"]:checked');
+                if(checkedGenderCollection.length > 0){ //Since this is radio box, we need not loop through each value
+                    $('#div1').html("Hi "+$('input[name="name"]').val()+ "Welcome!<br/>");
+                    $('#div1').append("Gender: " +checkedGenderCollection.val()+ " is selected");
+                }else{
+                    $('#div1').html("Nothing is selected");
+                }
+            });
+
+            $('#button2').click(function(){
+               var checkedSkillsCollection = $('input[class="singlechkbox"]:checked');
+               //alert(checkedSkillsCollection.length);
+               if(checkedSkillsCollection.length > 0){
+                   $('#div1').append("<br/>Skills Selected<br/>");
+                   checkedSkillsCollection.each(function(){ // it is a checkbox, so loop through each value
+                      //alert($(this).val());
+                      $('#div1').append($(this).val()+"<br/>");
+                   });
+               }else{
+                   $('#div1').html("No checkbox is selected");
+               }
+            });
+
+            //Using each
+            $('#checkboxAll').click(function(){ //check all functionality
+                if(this.checked){ //if checkall is checked, then loop thru each single chckbox & check them
+                    $('.singlechkbox').each(function(){
+                        this.checked = true;
+                    });
+                }else{
+                    $('.singlechkbox').each(function(){
+                        this.checked = false;
+                    });
+                }
+            });
+
+            /*Using prop -- This will also serve same purpose as above. Use as needed.
+            $('#checkboxAll').click(function(){
+                if($(this).prop("checked")) {
+                    $(".singlechkbox").prop("checked", true);
+                } else {
+                    $(".singlechkbox").prop("checked", false);
+                }
+            });*/
+
+            //check if anyof the single chckbox is unchecked, then ChckAll also should be unchecked.
+            $('.singlechkbox').click(function(){
+                if($(".singlechkbox").length == $(".singlechkbox:checked").length) {
+                    $("#checkboxAll").prop("checked", true);
+                }else {
+                    $("#checkboxAll").prop("checked", false);
+                }
+            });
+
+        });
+    </script>
+
+</head>
+
+
+
+Enter your name:
+<input type="text" name="name"/>
+<br/><br/>
+
+Gender:
+<input type="radio" name="gender" value="Male">Male
+<input type="radio" name="gender" value="Female">Female
+<br/><br/>
+
+Select your Skills:
+<input type="checkbox" id="checkboxAll" name="selectAll">Select All skills<br/>
+<input type="checkbox" class="singlechkbox" name="Skills" value="C++">C++
+<input type="checkbox" class="singlechkbox" name="Skills" value="Java">Java
+<input type="checkbox" class="singlechkbox" name="Skills" value="SQL">SQL
+<input type="checkbox" class="singlechkbox" name="Skills" value="AngularJs">AngularJs
+<br/><br/>
+
+
+<input id="button1" class="clsbutton1" type="button" name="btngender" value="SelectedGender" >
+&nbsp; &nbsp;
+<input id="button2" class="clsbutton1" type="button" name="btnskills" value="SelectedSkills" >
+<br/>
+<div id="div1">Please enter above information to proceed....</div>
+<br/>
+<div id="div2" hidden="true">
+    <p id="para1">First jquery example</p>
+    <p id="para2">Second jquery example</p>
+</div>
+
+
+
+</body>
+</html>

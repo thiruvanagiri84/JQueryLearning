@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>jQuery Basics</title>
+
+    <link rel="stylesheet" type="text/css" href="jqueryStyles.css">
+
+    <script src="jquery-3.2.1.js"></script>
+
+    <!-- We can use CDN(Content data network) as well instead of using above local js file.
+    <script src="https://code.jquery.com/jquery-3.2.1.js"
+            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous">
+    </script>
+    -->
+    <!--
+        Id Selector: use #
+        Class Selector: Use .
+        Element Selector: Use element directly, Ex: div
+    -->
+
+    <script type="text/javascript">
+        jQuery(document).ready(function(){
+            $('#button1').click(function(){
+                //alert("Button 1 is clicked");
+                $('#button1').css('background-color','red'); //referencing by Id selector
+                $('.clsbutton2').css('background-color','blue'); //referencing by Class selector
+                $('#div1').html("Button 1 is clicked"); //printing dynamically to div1 Id element
+            });
+
+            $('#button2').click(function(){
+               //alert("Button 2 is clicked");
+               //$('#div1').html("Button 2 is clicked"); //This will overwrite existing html content
+                $('#div1').append("<br/>Button 2: value: " +$('#button2').val()+ " - is clicked"); // This is append to existing html content
+                $('h1').css('background-color','yellow');
+                $('#span1').hide();
+                $('#div2').show();
+            });
+
+        });
+    </script>
+
+</head>
+<body>
+
+    <h1 id="san1">Developed by <span id="span1">T Santosh Kumar</span></h1>
+
+    <input id="button1" class="clsbutton1" type="button" name="test1" value="Click 1" >
+    <input id="button2" class="clsbutton2" type="button" name="test2" value="Click 2" >
+
+    <div id="div1"></div>
+    <div id="div2" hidden="true">
+        <p id="para1">First jquery example</p>
+        <p id="para2">Second jquery example</p>
+    </div>
+
+</body>
+</html>

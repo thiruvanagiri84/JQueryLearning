@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head lang="en">
+    <script>
+
+        var x = function(name){ // Anonymous function
+            alert("Inside Function without name(Anonymous Function): "+name);
+        }
+
+        var y = function fnWithName(name){
+            alert("Inside Function with name: "+name);
+        }
+
+        function fnClickMe(){
+            x("santosh");
+            y("Kumar"); // calling a function with its return value.
+
+            setTimeout(x("veda"),3000);
+            setTimeout(console.log("Hello"),3000);
+        }
+    </script>
+</head>
+<br/><br/><br/><br/>
+<center><input type="button" name="test" value="Click Me" onclick="fnClickMe();"></center>
+</body>
+</html>

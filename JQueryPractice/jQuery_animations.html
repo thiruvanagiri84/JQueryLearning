@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>JQuery Animations</title>
+    <link rel="stylesheet" href="style.css" media="screen" charset="utf-8">
+
+    <script type="text/javascript" src="jquery-3.2.1.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+           $('a').mouseover(function(){
+               $('.box').css('background-color','yellow');
+           });
+           $('a').mouseout(function(){
+               $('.box').css('background-color','hsla(44, 85%, 58%, 1)')
+           })
+        });
+    </script>
+
+</head>
+
+<body>
+
+<header>
+    <h1>JQuery Animations</h1>
+</header>
+
+<section>
+
+    <article id="lesson-1">
+
+        <div class="boxes">
+            <div class="box" id="box1" title="box1">1</div>
+            <div class="box" id="box2">2</div>
+            <div class="box" id="box3">3</div>
+            <div class="box" id="box4">4</div>
+            <div class="box"></div>
+            <a href="#" class="box" id="box5" title="box5">5</a>
+        </div>
+
+        <h2>Lesson One <span>Minutes 1 &ndash; 5</span></h2>
+        <h2>Lesson One</h2>
+
+        <p class="lead">Santosh Kumar </p>
+        <p name="shorty">Vedanshika</p>
+        <p>Bhuvana</p>
+
+
+        <ul>
+            <li><a href="http://google.com">Google</a></li>
+            <li><a href="http://facebook.com">Facebook</a></li>
+            <li><a href="http://youtube.co.uk">YouTube</a></li>
+            <li><a href="http://amazon.com">Amazon</a></li>
+        </ul>
+
+
+
+    </article>
+
+</section>
+
+</body>
+
+</html>

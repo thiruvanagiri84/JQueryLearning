@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<head lang="en">
+    <script>
+        function fnClickMe(){
+            var sum = new Function('a','b','return a+b'); // Creating new instance of a Function. This is like writing a function inside a function.
+            alert("sum is: "+sum(4,6));
+            // Functions in JS are special type variables.
+            // We can pass function to functions, return function within function, write function inside function .. Just like a variable.
+        }
+    </script>
+</head>
+<br/><br/><br/><br/>
+<center><input type="button" name="test" value="Click Me" onclick="fnClickMe();"></center>
+</body>
+</html>

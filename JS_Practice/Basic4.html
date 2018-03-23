@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<head lang="en">
+    <script>
+        function fnClickMe(){
+            var expression = prompt("Enter the expression you want to evaluate");
+            eval(expression); // I entered: 'var i=10, j=20; var res = i+j; alert("result: "+res);' - returns 30
+        }
+    </script>
+</head>
+<br/><br/><br/><br/>
+<center><input type="button" name="test" value="Click Me" onclick="fnClickMe();"></center>
+</body>
+</html>

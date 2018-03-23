@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>JQuery CheckBox groups</title>
+
+    <link rel="stylesheet" type="text/css" href="jqueryStyles.css">
+
+    <script type="text/javascript" src="jquery-3.2.1.js"></script>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function(){
+
+            $('#button1').click(function(){
+                var checkedSkillsCollection = $('input[class="singlechkbox"]:checked');
+                if(checkedSkillsCollection.length > 0){
+                    $('#div1').html("<br/>Skills Selected<br/>");
+                    checkedSkillsCollection.each(function(){ // it is a checkbox, so loop through each value
+                        $('#div1').append($(this).val()+"<br/>");
+                    });
+                }else{
+                    $('#div1').html("Nothing is selected");
+                }
+            });
+
+            $('#button2').click(function(){
+                var checkedLocationsCollection = $('input[class="singlelocchkbox"]:checked');
+                if(checkedLocationsCollection.length > 0){
+                    $('#div1').html("<br/>Locations Selected<br/>");
+                    checkedLocationsCollection.each(function(){ // it is a checkbox, so loop through each value
+                        $('#div1').append($(this).val()+"<br/>");
+                    });
+                }else{
+                    $('#div1').html("Nothing is selected");
+                }
+            });
+
+            //Using each
+            $('#checkboxAll').click(function(){ //check all functionality
+                if(this.checked){ //if checkall is checked, then loop thru each single chckbox & check them
+                    $('.singlechkbox').each(function(){
+                        this.checked = true;
+                    });
+                }else{
+                    $('.singlechkbox').each(function(){
+                        this.checked = false;
+                    });
+                }
+            });
+
+            /*Using prop -- This will also serve same purpose as above. Use as needed.
+             $('#checkboxAll').click(function(){
+             if($(this).prop("checked")) {
+             $(".singlechkbox").prop("checked", true);
+             } else {
+             $(".singlechkbox").prop("checked", false);
+             }
+             });*/
+
+            //check if anyof the single chckbox is unchecked, then ChckAll also should be unchecked.
+            $('.singlechkbox').click(function(){
+                if($(".singlechkbox").length == $(".singlechkbox:checked").length) {
+                    $("#checkboxAll").prop("checked", true);
+                }else {
+                    $("#checkboxAll").prop("checked", false);
+                }
+            });
+
+            $('#checkAllLocations').click(function(){ //check all functionality
+                if(this.checked){ //if checkall is checked, then loop thru each single chckbox & check them
+                    $('.singlelocchkbox').each(function(){
+                        this.checked = true;
+                    });
+                }else{
+                    $('.singlelocchkbox').each(function(){
+                        this.checked = false;
+                    });
+                }
+            });
+
+            $('.singlelocchkbox').click(function(){
+                if($(".singlelocchkbox").length == $(".singlelocchkbox:checked").length) {
+                    $("#checkAllLocations").prop("checked", true);
+                }else {
+                    $("#checkAllLocations").prop("checked", false);
+                }
+            });
+
+        });
+    </script>
+
+</head>
+
+<a href="#testdiv">Goto Test Div</a><br/><br/> <!-- Testiing same page href links -->
+
+Select your Skills:
+<label class="switch">
+    <input type="checkbox" id="checkboxAll" name="selectAll"> <!-- Toggle switch implementation -->
+    <span class="slider round"></span>
+</label><br/>
+<input type="checkbox" class="singlechkbox" name="Skills" value="C++">C++<br/>
+<input type="checkbox" class="singlechkbox" name="Skills" value="Java">Java<br/>
+<input type="checkbox" class="singlechkbox" name="Skills" value="SQL">SQL<br/>
+<input type="checkbox" class="singlechkbox" name="Skills" value="AngularJs">AngularJs<br/><br/><br/>
+<br/><br/>
+
+<br/><br/><br/>
+<input id="button1" class="clsbutton1" type="button" name="btnskills" value="SelectedSkills" >
+<br/>
+<br/><br/><br/>
+<br/><br/>
+Select your preferred locations:
+<input type="checkbox" id="checkAllLocations" name="selectAllLocations">Select All skills<br/>
+<input type="checkbox" class="singlelocchkbox" name="locations" value="Hyd">Hyd
+<input type="checkbox" class="singlelocchkbox" name="locations" value="Blore">Blore
+<input type="checkbox" class="singlelocchkbox" name="locations" value="Pune">Pune
+<input type="checkbox" class="singlelocchkbox" name="locations" value="Delhi">Delhi
+<br/><br/>
+
+<br/><br/><br/><br/>
+<input id="button2" class="clsbutton1" type="button" name="btnlocations" value="SelectedLocations" >
+<br/>
+<br/><br/><br/><br/>
+<div id="div1">Please enter above information to proceed....</div>
+<br/>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+<div id="testdiv" style="color:red">hello am here</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<head lang="en">
+    <script>
+
+        function fnOne(){
+            alert("inside fnOne")
+            var i = 2;
+            var j = 3;
+            return i+j;
+        }
+
+        function fnTwo(){
+            alert("inside fnTwo")
+            var x = 4;
+            var y = 1;
+            return x+y;
+        }
+
+        function fnSum(a,b){
+            alert("inside fnSum") // 1st alert
+            return a()+b(); // returning functions inside functions
+        }
+
+        function fnClickMe(){
+            var result = fnSum(fnOne,fnTwo); // passing functions as variables.
+            alert(result);
+        }
+    </script>
+</head>
+<br/><br/><br/><br/>
+<center><input type="button" name="test" value="Click Me" onclick="fnClickMe();"></center>
+</body>
+</html>
